@@ -1,0 +1,3 @@
+package com.nik.reduction.model;
+
+public record Ingredient(Long id, String name, int quantity) {}
