@@ -47,6 +47,17 @@ public class Recipe {
         updatedAt = LocalDateTime.now();
     }
 
+    // Add these methods to your Recipe class (after @PreUpdate method)
+    public void addIngredient(Ingredient ingredient) {
+        ingredients.add(ingredient);
+        ingredient.setRecipe(this);
+    }
+
+    public void removeIngredient(Ingredient ingredient) {
+        ingredients.remove(ingredient);
+        ingredient.setRecipe(null);
+    }
+
     // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
