@@ -2,7 +2,7 @@ package com.nik.reduction.dto;
 
 import java.util.List;
 
-public class RecipeRequest {
+public class  RecipeRequest {
     private String name;
     private String description;
     private String instructions;
