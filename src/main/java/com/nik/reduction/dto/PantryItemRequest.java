@@ -4,8 +4,11 @@ import java.time.LocalDate;
 
 public class PantryItemRequest {
     private String name;
+
     private Integer quantity;
+
     private String unit;
+
     private LocalDate expirationDate;
 
     public String getName() { return name; }

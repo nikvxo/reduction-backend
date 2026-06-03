@@ -29,6 +29,7 @@ public class PantryService {
 
     @Transactional
     public PantryItem createItem(PantryItemRequest request) {
+        validateRequest(request);
         PantryItem item = new PantryItem();
         item.setName(request.getName());
         item.setQuantity(request.getQuantity());
@@ -39,6 +40,7 @@ public class PantryService {
 
     @Transactional
     public Optional<PantryItem> updateItem(Long id, PantryItemRequest request) {
+        validateRequest(request);
         return pantryRepository.findById(id).map(item -> {
             item.setName(request.getName());
             item.setQuantity(request.getQuantity());
@@ -68,5 +70,33 @@ public class PantryService {
                 .map(PantryItem::getName)
                 .distinct()
                 .toList();
+    }
+
+    private void validateRequest(PantryItemRequest request) {
+        if (request == null) {
+            throw new IllegalArgumentException("Request body is required");
+        }
+        if (isBlank(request.getName())) {
+            throw new IllegalArgumentException("Name is required");
+        }
+        if (request.getQuantity() == null) {
+            throw new IllegalArgumentException("Quantity is required");
+        }
+        if (request.getQuantity() < 0) {
+            throw new IllegalArgumentException("Quantity must be zero or greater");
+        }
+        if (isBlank(request.getUnit())) {
+            throw new IllegalArgumentException("Unit is required");
+        }
+        if (request.getExpirationDate() == null) {
+            throw new IllegalArgumentException("Expiration date is required");
+        }
+        if (request.getExpirationDate().isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("Expiration date must be today or in the future");
+        }
+    }
+
+    private boolean isBlank(String value) {
+        return value == null || value.trim().isEmpty();
     }
 }

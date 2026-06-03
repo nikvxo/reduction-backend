@@ -4,11 +4,17 @@ import java.util.List;
 
 public class  RecipeRequest {
     private String name;
+
     private String description;
+
     private String instructions;
+
     private Integer prepTime;
+
     private Integer cookTime;
+
     private Integer servings;
+
     private List<IngredientRequest> ingredients;
 
     // Getters and setters
@@ -35,6 +41,7 @@ public class  RecipeRequest {
 
     public static class IngredientRequest {
         private String name;
+
         private String quantity;
 
         public String getName() { return name; }
