@@ -35,10 +35,11 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/reduction
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_DATA_REDIS_HOST: redis
       SPRING_DATA_REDIS_PORT: 6379
-      SPOONACULAR_API_KEY: ${SPOONACULAR_API_KEY:-your-api-key-here}
+      SPOONACULAR_API_KEY: ${SPOONACULAR_API_KEY:-}
     ports:
       - "8080:8080"
     depends_on:
